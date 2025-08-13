@@ -1,0 +1,97 @@
+/* Reset and basic styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, #ffc0cb, #ffb6c1, #ff69b4, #ff1493, #ff69b4, #ffc0cb);
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#letter-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  z-index: 2;
+}
+
+#click-to-reveal {
+  font-family: 'Cormorant Garamond', serif; /* romantic font */
+  font-size: 28px; /* bigger */
+  font-weight: bold; /* bold */
+  color: #c0392b;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+
+#letter {
+  width: 80vw;
+  max-width: 400px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  min-height: 150px;
+  overflow: hidden;
+  transition: min-height 0.5s ease;
+  position: relative;
+}
+
+#letter-content {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #000;
+}
+
+/* Typing cursor only appears after letter is revealed */
+#letter.revealed #letter-content::after {
+  content: '|';
+  display: inline;
+  animation: blinkCaret 0.8s step-start infinite;
+  margin-left: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+@keyframes blinkCaret {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+/* Signature animation */
+#signature {
+  font-family: 'Brush Script MT', cursive, sans-serif;
+  font-size: 1.8rem;
+  color: #e91e63;
+  margin-top: 15px;
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+#letter.signature-visible #signature {
+  opacity: 1;
+}
+
+/* Confetti canvas */
+#confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: none;
+  z-index: 10; /* higher than the letter */
+}
